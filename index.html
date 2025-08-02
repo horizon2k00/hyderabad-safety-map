@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Safety Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <div class="info-panel" id="info-panel">
+        <button id="toggle-button" aria-label="Toggle info panel">×</button>
+        <div class="panel-content">
+            <h1>Hyderabad Safety Ratings</h1>
+            <p>This map displays simulated SafetiPin data for different zones in Hyderabad. The color of the circles
+                indicates the safety score.</p>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #28a745;"></div>
+                    <span>Safe (8-10)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #ffc107;"></div>
+                    <span>Moderately Safe (5-7)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #dc3545;"></div>
+                    <span>Unsafe (1-4)</span>
+                </div>
+            </div>
+            <p style="font-size: 0.8em; margin-top: 15px; color: #666;">Data is updated periodically to reflect the
+                latest information.</p>
+        </div>
+    </div>
+
+    <!-- At the end of your <body> section -->
+    <!-- <script src="assets/js/api.js"></script>
+    <script src="assets/js/map.js"></script> -->
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>
+```
+
+I've made the following key changes:
+
+* **Collapsible Panel:** A toggle button has been added to the info panel. Clicking it will now collapse the panel to a
+small icon, allowing you to see the full map. Clicking it again will expand it.
+* **Responsive Design:** On screens smaller than 768px (like tablets and mobile phones), the info panel now moves to the
+bottom of the screen to provide a better viewing experience.
+* **Mobile-First View:** The panel will automatically start in its collapsed state on mobile devices to maximize the
+visible map area right aw
