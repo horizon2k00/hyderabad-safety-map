@@ -1,14 +1,15 @@
-// In assets/js/api.js
+import { getAuthToken } from './auth.js';
 
 /**
  * Fetches safety data.
  * In the future, this will make a real API call to the IUDX.
  * @returns {Promise<Array>} A promise that resolves to an array of safety data points.
  */
-export async function fetchSafetyData() {
-    console.log("Fetching safety data...");
+export async function fetchSafetyData(coords = null) {
+    //Call Fetch auth token function, use it to decide how much data to return
+    const token = getAuthToken();
+    console.log("Fetching safety data...", coords ? `for coords ${coords.lat}, ${coords.lon}` : 'for entire city');
 
-    // **IMPORTANT**: In a real application, you would fetch data from the IUDX API here.
     // For now, we are returning the same simulated data.
     const simulatedData = [
         { "name": "Gachibowli", "lat": 17.4486, "lng": 78.3458, "safety_score": 8.5 },
@@ -27,4 +28,36 @@ export async function fetchSafetyData() {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     return simulatedData;
+}
+
+/**
+ * Submits a new incident report to the Bubble backend.
+ * @param {object} incidentData - { type, lat, lon }
+ * @returns {Promise<boolean>} True on success.
+ */
+export async function logIncident(incidentData) {
+    const token = getAuthToken();
+    if (!token) {
+        console.error("Authentication required to report an incident.");
+        return false;
+    }
+    console.log("Logging incident:", incidentData);
+    
+    // Real fetch call to Bubble workflow
+    // await fetch(`${BUBBLE_API_URL}/log_incident`, { ... });
+
+    return true; // Assume success for demo
+}
+
+/**
+ * Adds a user to the waitlist via the Bubble backend.
+ * @param {string} name 
+ * @param {string} phone 
+ * @returns {Promise<boolean>} True on success.
+ */
+export async function addToWaitlist(name, phone) {
+     console.log(`Adding ${name} (${phone}) to waitlist...`);
+     // Real fetch call to Bubble workflow
+     // await fetch(`${BUBBLE_API_URL}/add_to_waitlist`, { ... });
+     return true; // Assume success for demo
 }

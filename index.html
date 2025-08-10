@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyderabad Safety Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,6 +17,16 @@
 
     <div id="map"></div>
 
+    <!-- Map Overlay for Unauthenticated Users -->
+    <div id="map-overlay" class="hidden">
+        <div class="overlay-content">
+            <h2>Join our community for full access.</h2>
+            <p>Get real-time safety insights for all of Hyderabad.</p>
+            <button id="join-waitlist-btn">Join Waitlist</button>
+        </div>
+    </div>
+
+    <!-- Info Panel -->
     <div class="info-panel" id="info-panel">
         <button id="toggle-button" aria-label="Toggle info panel">×</button>
         <div class="panel-content">
@@ -44,20 +52,45 @@
         </div>
     </div>
 
-    <!-- At the end of your <body> section -->
-    <!-- <script src="assets/js/api.js"></script>
-    <script src="assets/js/map.js"></script> -->
+    <!-- Report Incident Button (Hidden by default) -->
+    <button id="report-incident-btn" class="hidden">Report Incident</button>
+
+    <!-- Modals (Hidden by default) -->
+    <!-- Waitlist Modal -->
+    <div id="waitlist-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Join the Waitlist</h2>
+            <form id="waitlist-form">
+                <input type="text" id="waitlist-name" placeholder="Full Name" required>
+                <input type="tel" id="waitlist-phone" placeholder="WhatsApp Number" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Incident Report Modal -->
+    <div id="incident-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Report an Incident</h2>
+            <p>Your report is anonymous and helps keep the community safe.</p>
+            <form id="incident-form">
+                <select id="incident-type" required>
+                    <option value="">Select Incident Type</option>
+                    <option value="verbal_harassment">Verbal Harassment</option>
+                    <option value="stalking">Stalking</option>
+                    <option value="theft">Theft</option>
+                    <option value="unsafe_area">Unsafe Area (Poor lighting, etc.)</option>
+                    <option value="other">Other</option>
+                </select>
+                <button type="submit">Report Anonymously</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Script -->
     <script type="module" src="assets/js/main.js"></script>
 </body>
 
 </html>
-```
-
-I've made the following key changes:
-
-* **Collapsible Panel:** A toggle button has been added to the info panel. Clicking it will now collapse the panel to a
-small icon, allowing you to see the full map. Clicking it again will expand it.
-* **Responsive Design:** On screens smaller than 768px (like tablets and mobile phones), the info panel now moves to the
-bottom of the screen to provide a better viewing experience.
-* **Mobile-First View:** The panel will automatically start in its collapsed state on mobile devices to maximize the
-visible map area right aw
